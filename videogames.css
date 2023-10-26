@@ -1,0 +1,68 @@
+.videogame{
+    display: flex;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: solid 1px rgba(100, 100, 100, 0.4);
+}
+.videogame-left-container{
+    display: flex;
+    width: 80px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 80px;
+    color:yellow;
+    align-items: center;
+}
+.videogame-right-container{
+    display: grid;
+    grid-template-columns: 5fr 1fr 1fr;
+    max-width: 100%;
+}
+.videogame-info-container{
+    overflow: scroll;
+    word-wrap: break-word; /* Allow long words to wrap */
+    margin-right: 10px;
+    text-align: left;
+}
+    .videogame-info-container h2{
+        font-size: 35px;
+        margin-bottom: 6px;
+    }
+    .videogame-info-container p{
+        font-size: 16px;
+        color: lightgray;
+    }
+
+.button-container{
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    border-left: solid 1px rgba(100, 100, 100, 0.4);
+}
+
+.button-style{
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+
+    border: none;
+    border-radius: 8px;
+
+    background-color: #d20000;
+    color:white;
+    font-weight: bold;
+    cursor: pointer;
+    opacity: 1;
+}
+
+.button-style:hover{
+    background-color: #8b0000;
+    box-shadow: 0px 0px 10px 2px red;
+    transition: opacity 0.15s;
+}
+
+.button-style:active{
+    opacity: 0.5;
+    transition: opacity 0.15s;
+}

@@ -1,0 +1,26 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, sans-serif;
+}
+html, body {
+    background-color: black;
+    color: white;
+    height: 100%;
+}
+.main-page{
+    padding-top: 100px;
+}
+.center-container{
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.center-container p{
+    font-size: 30px;
+}
+.center-container a{
+    font-size: 20px;
+}
