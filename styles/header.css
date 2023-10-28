@@ -1,3 +1,14 @@
+.dummy-header{
+    display: flex;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    padding-bottom: 50px;
+    padding-top: 50px;
+    background-color: rgb(210, 0, 0);
+}
+
 .RFE-header{
     display: flex;
     flex-direction: row;

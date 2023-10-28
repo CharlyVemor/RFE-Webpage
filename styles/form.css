@@ -1,10 +1,16 @@
+form{
+    display: flex;
+    flex-direction: column;
+}
 .form-container{
     display: flex;
     flex-direction: column;
     width: 350px;
-    margin: 0 auto;
-    margin-top: 120px;
     text-align: center;
+    background-color: #181818;
+    border: solid 1px #353535;
+    border-radius: 10px;
+    padding: 30px 50px;
 }
 .form-title{
     font-size: 30px;
@@ -30,14 +36,19 @@
     outline: none;
     box-shadow: 0px 1px 10px 5px red;
 }
-.form-group button {
+.button-container{
+    margin: 20px 0px;
+}
+.button-container button {
     padding: 12px 40px;
-    margin-top: 10px;
-    margin-bottom: 5px;
     background-color: #007BFF;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 18px;
+    font-weight: bold;
+}
+.register{
+    margin: 10px 0px;
 }

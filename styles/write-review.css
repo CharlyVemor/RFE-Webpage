@@ -1,13 +1,16 @@
 .review-container{
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     width: 80%;
-    height: 50%;
+    height: 70%;
     padding-top: 20px;
     padding-bottom: 20px;
     padding-left: 30px;
     padding-right: 30px;
-    background-color: rgb(20, 20, 20);
+    background-color: #181818;
     border:1px solid #444;
     border-radius: 5px;
 }
@@ -46,6 +49,7 @@
     input:checked ~ label{
         color:#fd4;
     }
+
 form{
     height: 100%;
     display: flex;
@@ -57,8 +61,8 @@ form .text-area{
     width: 100%;
     overflow: hidden;
 }
-form .text-area h2{
-    padding-bottom: 10px;
+form .text-area h1{
+    padding-bottom: 20px;
 }
 form .text-area textarea{
     height: 100%;
@@ -71,6 +75,7 @@ form .text-area textarea{
     font-size: 16px;
     resize: none;
 }
+
 .btn{
     height: 20%;
     display: flex;

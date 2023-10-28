@@ -53,9 +53,9 @@ session_start();
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>RFE - Escribir Reseña</title>
-        <link rel="stylesheet" type="text/css" href="general.css" />
-        <link rel="stylesheet" type="text/css" href="header.css" />
-        <link rel="stylesheet" type="text/css" href="write-review.css" />
+        <link rel="stylesheet" type="text/css" href="styles/general.css" />
+        <link rel="stylesheet" type="text/css" href="styles/header.css" />
+        <link rel="stylesheet" type="text/css" href="styles/write-review.css" />
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <head>
     <body>
@@ -74,30 +74,32 @@ session_start();
                 <a class="no-underline" href="logout.php">&#8594 Cerrar Sesión</a>
             </div>
         </div>
-        <div class="center-container">
-            <div class="review-container">
-                <div class="stars">
-                    <form method="post">
-                        <div class="all-stars">
-                            <input type="radio" name="rating" id="rate-5" value="5">
-                            <label for="rate-5" class="bx bxs-star"></label>
-                            <input type="radio" name="rating" id="rate-4" value="4">
-                            <label for="rate-4" class="bx bxs-star"></label>
-                            <input type="radio" name="rating" id="rate-3" value="3">
-                            <label for="rate-3" class="bx bxs-star"></label>
-                            <input type="radio" name="rating" id="rate-2" value="2">
-                            <label for="rate-2" class="bx bxs-star"></label>
-                            <input type="radio" name="rating" id="rate-1" value="1">
-                            <label for="rate-1" class="bx bxs-star"></label>
-                        </div>
-                        <div class="text-area">
-                            <h2><?php echo $game_data['Name']?></h2>
-                            <textarea name="review" id="review" cols="30" placeholder="Escribe tu reseña..."></textarea>
-                        </div>
-                        <div class="btn">
-                            <button type="submit">Enviar</button>
-                        </div>
-                    </form>
+        <div class="main-page">
+            <div class="center-grid">
+                <div class="review-container">
+                    <div class="stars">
+                        <form method="post">
+                            <div class="all-stars">
+                                <input type="radio" name="rating" id="rate-5" value="5">
+                                <label for="rate-5" class="bx bxs-star"></label>
+                                <input type="radio" name="rating" id="rate-4" value="4">
+                                <label for="rate-4" class="bx bxs-star"></label>
+                                <input type="radio" name="rating" id="rate-3" value="3">
+                                <label for="rate-3" class="bx bxs-star"></label>
+                                <input type="radio" name="rating" id="rate-2" value="2">
+                                <label for="rate-2" class="bx bxs-star"></label>
+                                <input type="radio" name="rating" id="rate-1" value="1">
+                                <label for="rate-1" class="bx bxs-star"></label>
+                            </div>
+                            <div class="text-area">
+                                <h1><?php echo $game_data['Name']?></h1>
+                                <textarea name="review" id="review" cols="30" placeholder="Escribe tu reseña..."></textarea>
+                            </div>
+                            <div class="btn">
+                                <button type="submit">Enviar</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

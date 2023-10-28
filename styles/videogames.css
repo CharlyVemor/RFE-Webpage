@@ -1,8 +1,23 @@
+.instructions{
+    padding: 20px;
+}
+.instructions p{
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+}
+.videogame-grid{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .videogame{
     display: flex;
     padding-top: 20px;
     padding-bottom: 20px;
-    border-bottom: solid 1px rgba(100, 100, 100, 0.4);
+    width: 85%;
+    background-color: #181818;
+    border: solid 1px #353535;
 }
 .videogame-left-container{
     display: flex;
@@ -29,7 +44,7 @@
         margin-bottom: 6px;
     }
     .videogame-info-container p{
-        font-size: 16px;
+        font-size: 18px;
         color: lightgray;
     }
 

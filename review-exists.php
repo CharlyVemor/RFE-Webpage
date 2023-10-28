@@ -14,8 +14,8 @@ session_start();
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>RFE - Ya existe</title>
-        <link rel="stylesheet" type="text/css" href="general.css" />
-        <link rel="stylesheet" type="text/css" href="header.css" />
+        <link rel="stylesheet" type="text/css" href="styles/general.css" />
+        <link rel="stylesheet" type="text/css" href="styles/header.css" />
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <head>
     <body>

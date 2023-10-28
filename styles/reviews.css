@@ -1,0 +1,63 @@
+.game-title{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+.game-title p{
+    font-size: 28px;
+    font-weight: bold;
+}
+.review-grid{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.review{
+    width: 50%;
+    margin-bottom: 20px;
+    padding: 30px;
+    background-color: #181818;
+    border: 1px solid #353535;
+    border-radius: 10px;
+}
+
+.top-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stars{
+    padding: 20px;
+    font-size: 35px;
+}
+.yellow-star{
+    color:#fd4;
+}
+.gray-star{
+    color: #444;
+}
+
+.username{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+    .username p{
+        font-size: 30px;
+        font-weight: bold;
+    }
+    .username i{
+        font-size: 60px;
+        padding-right: 10px;
+    }
+
+.review-text{
+    word-wrap: break-word;
+    font-size: 23px;
+    text-align: left;
+    color: lightgray;
+}

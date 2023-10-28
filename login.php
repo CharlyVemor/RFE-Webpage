@@ -49,9 +49,9 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RFE - Inciar Sesión</title>
-    <link rel="stylesheet" type="text/css" href="general.css" />
-    <link rel="stylesheet" type="text/css" href="header.css" />
-    <link rel="stylesheet" type="text/css" href="form.css" />
+    <link rel="stylesheet" type="text/css" href="styles/general.css" />
+    <link rel="stylesheet" type="text/css" href="styles/header.css" />
+    <link rel="stylesheet" type="text/css" href="styles/form.css" />
 </head>
 <body>
     <div class="RFE-header">
@@ -63,23 +63,29 @@ session_start();
         </a>
         <div class="right-header"></div>
     </div>
-    <div class="form-container">
-        <h2 class="form-title">Iniciar Sesión</h2>
-        <form method="post">
-            <div class="form-group">
-                <label for="username">Nombre de Usuario</label>
-                <input type="text" id="username" name="username" required>
+    <div class="main-page">
+        <div class="center-grid">
+            <div class="form-container">
+                <h2 class="form-title">Iniciar Sesión</h2>
+                <form method="post">
+                    <div class="form-group">
+                        <label for="username">Nombre de Usuario</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Contraseña</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <span style="color: red;"><?php echo $Error; ?></span>
+                    <div class="button-container">
+                        <button type="submit">Continuar</button>
+                    </div>
+                    <div class="register">
+                        <p>No estas registrado? <a href="register.php">Registrate</a></p>
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <label for="password">Contraseña</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <span style="color: red;"><?php echo $Error; ?></span>
-            <div class="form-group">
-                <button type="submit">Continuar</button>
-            </div>
-            <p>No estas registrado? <a href="register.php">Registrate</a></p>
-        </form>
+        </div>
     </div>
 </body>
 </html>
