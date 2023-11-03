@@ -34,7 +34,7 @@
     max-width: 100%;
 }
 .videogame-info-container{
-    overflow: scroll;
+    overflow: hidden;
     word-wrap: break-word; /* Allow long words to wrap */
     margin-right: 10px;
     text-align: left;

@@ -43,7 +43,6 @@
     input:not(:checked) ~ label:hover,
     input:not(:checked) ~ label:hover ~ label{
         color:#fd4;
-        opacity: 0.8;
     }
 
     input:checked ~ label{
