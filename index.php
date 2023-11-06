@@ -44,32 +44,41 @@ session_start();
             </div>
             <div class="videogame-grid">
                 <?php
-                    while ($row = mysqli_fetch_assoc($videogame))
+                    while ($row = $videogame->fetch_assoc())
                     {
-                        echo
-                        '
+                ?>
                         <div class="videogame">
                             <div class="videogame-left-container">
                                 <i class="bx bxs-game"></i>
                             </div>
                             <div class="videogame-right-container">
                                 <div class="videogame-info-container">
-                                    <h2>'.$row['Name'].'</h2>
-                                    <p>'.$row['Description'].'</p>
+                                    <h2><?= htmlspecialchars($row['Name']) ?></h2>
+                                    <p><?= htmlspecialchars($row['Description']) ?></p>
                                 </div>
                                 <div class="button-container">
+                <?php
+                                    echo
+                                    '
                                     <a href="write-review.php?videogame_id='.$row['ID_Vid'].'">
                                         <button class="button-style">Escribir Reseña</button>
                                     </a>
+                                    ';
+                ?>
                                 </div>
                                 <div class="button-container">
+                <?php
+                                    echo 
+                                    '
                                     <a href="check-reviews.php?videogame_id='.$row['ID_Vid'].'">
                                         <button class="button-style">Mirar Reseñas</button>
                                     </a>
+                                    ';
+                ?>
                                 </div>
                             </div>
                         </div>
-                        ';
+                <?php
                     }
                 ?>
             </div>

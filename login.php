@@ -8,22 +8,23 @@ session_start();
 
     if($_SERVER['REQUEST_METHOD'] == "POST")
     {
-        //something was posted
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+        $username = $con->real_escape_string($_POST['username']);
+        $password = $con->real_escape_string($_POST['password']);
 
         //read from database
-        $query = "select * from usuarios where Username = '$username' limit 1";
+        $query = "select * from usuarios where Username = ? limit 1";
         
-        $result = mysqli_query($con, $query);
+        $result = $con->execute_query($query, [$username])  /*mysqli_query($con, $query)*/;
 
         if($result)
         {
-            if($result && mysqli_num_rows($result) > 0)
+            if($result && $result->num_rows/*mysqli_num_rows($result)*/ > 0)
             {
-                $user_data = mysqli_fetch_assoc($result);
+                $user_data = $result->fetch_assoc()/*mysqli_fetch_assoc($result)*/;
                     
-                if($user_data['Password'] === $password)
+                //Compara la contraseña encriptada de la base de datos
+                //con la que fue introducida en el inicio de sesión
+                if(password_verify($password, $user_data["Password"]))
                 {
                     $_SESSION['ID_User'] = $user_data['ID_User'];
                     header("Location: index.php");
@@ -41,6 +42,7 @@ session_start();
         }
     }
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -79,6 +81,9 @@ session_start();
                     <span style="color: red;"><?php echo $Error; ?></span>
                     <div class="button-container">
                         <button type="submit">Continuar</button>
+                    </div>
+                    <div class="register">
+                        <p>Olvidaste tu contraseña? <a href="forgot-password.php">Contactanos</a></p>
                     </div>
                     <div class="register">
                         <p>No estas registrado? <a href="register.php">Registrate</a></p>

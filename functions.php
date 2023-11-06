@@ -23,13 +23,13 @@ function check_login($con)
 function display_videogames(){
     global $con;
     $query = "SELECT * FROM videojuegos";
-    $result = mysqli_query($con,$query);
+    $result = $con->execute_query($query);
     return $result;
 }
 function display_reviews($videogame_id){
     global $con;
-    $query = "SELECT reviews.Review, reviews.Rating, usuarios.Username FROM reviews INNER JOIN usuarios ON reviews.ID_User = usuarios.ID_User INNER JOIN videojuegos ON reviews.ID_Vid = videojuegos.ID_Vid WHERE reviews.ID_Vid = $videogame_id ";
-    $result = mysqli_query($con,$query);
+    $query = "SELECT reviews.Review, reviews.Rating, usuarios.Username FROM reviews INNER JOIN usuarios ON reviews.ID_User = usuarios.ID_User INNER JOIN videojuegos ON reviews.ID_Vid = videojuegos.ID_Vid WHERE reviews.ID_Vid = ? ";
+    $result = $con->execute_query($query, [$videogame_id]);
     return $result;
 }
 ?>

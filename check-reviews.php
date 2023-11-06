@@ -6,18 +6,20 @@ session_start();
 
     $videogame_id = 0;
 
+    //Obtiene el ID del videojuego desde el link
     if(isset($_GET['videogame_id'])){
         $videogame_id=$_GET['videogame_id'];
     }
 
     $user_data = check_login($con);
 
+    //Si el ID no existe
     if($videogame_id == 0){
         header("Location: index.php");
     }
-    $query = "select * from videojuegos where ID_Vid = $videogame_id";
-    $result = mysqli_query($con, $query);
-    $game_data = mysqli_fetch_assoc($result);
+    $query = "SELECT * FROM videojuegos WHERE ID_Vid = ?";
+    $result = $con->execute_query($query, [$videogame_id]);
+    $game_data = $result->fetch_assoc();
 
     $reviews = display_reviews($videogame_id);
 ?>
@@ -45,7 +47,7 @@ session_start();
             </a>
             <div class="right-header">
                 <div class="right-subcontainer">
-                    <p><?php echo $user_data['Username'];?></p>
+                    <p><?= htmlspecialchars($user_data['Username'])?></p>
                     <i class='bx bxs-user-circle'></i>
                 </div>
                 <a class="no-underline" href="logout.php">&#8594 Cerrar Sesión</a>
@@ -54,11 +56,11 @@ session_start();
         <div class="main-page">
             <div class="game-title">
                 <p>
-                    Reseñas de: <?php echo $game_data['Name']?>
+                    Reseñas de: <?= htmlspecialchars($game_data['Name'])?>
                 </p>
             </div>
             <?php
-                if(mysqli_num_rows($reviews) == 0){
+                if($reviews->num_rows == 0){
                     echo 
                     '
                     <div class="center-container">
@@ -68,35 +70,36 @@ session_start();
                     ';
                 }
                 else{
-                    while ($row = mysqli_fetch_assoc($reviews))
+                    while ($row = $reviews->fetch_assoc())
                     {
-                        echo
-                        '
+            ?>
                         <div class="review-grid">
                             <div class="review">
                                 <div class="top-container">
                                     <div class="username">
                                         <i class="bx bxs-user-circle"></i>
-                                        <p>'.$row['Username'].'</p>
+                                        <p><?= htmlspecialchars($row['Username']) ?></p>
                                     </div>
-                                    <div class="stars">';
+                                    <div class="stars">
+            <?php 
                                     $gray_stars = 5 - (int)$row['Rating'];
+
                                     for($i = 0; $i < $row['Rating']; $i++){
                                         echo '<i class="bx bxs-star yellow-star"></i>';
                                     }
                                     for($i = 0; $i < $gray_stars; $i++){
                                         echo '<i class="bx bxs-star gray-star"></i>';
                                     }
-                                echo '
+            ?>
                                     </div>
                                 </div>
                                 
                                 <div class="review-text">
-                                    <p>'.$row['Review'].'</p>
+                                    <p><?= htmlspecialchars($row['Review']) ?></p>
                                 </div>
                             </div>
                         </div>
-                        ';
+            <?php
                     }
                 }
             ?>

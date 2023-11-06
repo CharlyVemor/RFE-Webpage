@@ -16,32 +16,32 @@ session_start();
     }
     else{
         $user_id = $user_data['ID_User'];
-        $query = "select * from reviews where ID_Vid = $videogame_id and ID_User = $user_id limit 1";
-        $result = mysqli_query($con, $query);
+        $query = "select * from reviews where ID_Vid = ? and ID_User = ? limit 1";
+        $result = $con->execute_query($query,[$videogame_id, $user_id]);
         if($result)
         {
-            if($result && mysqli_num_rows($result) > 0)
+            if($result && $result->num_rows > 0)
             {
                 header("Location: review-exists.php");
             }
         }
     }
-    $query = "select * from videojuegos where ID_Vid = $videogame_id";
-    $result = mysqli_query($con, $query);
-    $game_data = mysqli_fetch_assoc($result);
+    $query = "select * from videojuegos where ID_Vid = ?";
+    $result = $con->execute_query($query, [$videogame_id]);
+    $game_data = $result->fetch_assoc();
 
     if($_SERVER['REQUEST_METHOD'] == "POST")
     {
         //something was posted
         $rating = intval($_POST['rating']);
-        $review = $_POST['review'];
+        $review = $con->real_escape_string($_POST['review']);
         $user_id = $user_data['ID_User'];
-        echo $rating;
+        //echo $rating;
         //write to database
-        $query = "insert into reviews (ID_User,ID_Vid,Rating,Review) values ($user_id,$videogame_id,$rating,'$review')";
+        $query = "insert into reviews (ID_User,ID_Vid,Rating,Review) values (?,?,?,?)";
         
-        mysqli_query($con, $query);
-       header("Location: index.php");
+        $con->execute_query($query,[$user_id, $videogame_id, $rating, $review]);
+        header("Location: index.php");
     }
 ?>
 
@@ -68,7 +68,7 @@ session_start();
             </a>
             <div class="right-header">
                 <div class="right-subcontainer">
-                    <p><?php echo $user_data['Username'];?></p>
+                    <p><?= htmlspecialchars($user_data['Username'])?></p>
                     <i class='bx bxs-user-circle white'></i>
                 </div>
                 <a class="no-underline" href="logout.php">&#8594 Cerrar Sesión</a>
@@ -92,8 +92,8 @@ session_start();
                                 <label for="rate-1" class="bx bxs-star"></label>
                             </div>
                             <div class="text-area">
-                                <h1><?php echo $game_data['Name']?></h1>
-                                <textarea name="review" id="review" cols="30" placeholder="Escribe tu reseña..."></textarea>
+                                <h1><?= htmlspecialchars($game_data['Name'])?></h1>
+                                <textarea name="review" id="review" cols="30" maxlength="5000" placeholder="Escribe tu reseña..."></textarea>
                             </div>
                             <div class="btn">
                                 <button type="submit">Enviar</button>

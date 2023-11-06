@@ -9,10 +9,10 @@ session_start();
     if($_SERVER['REQUEST_METHOD'] == "POST")
     {
         //something was posted
-        $username = $_POST['username'];
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-        $confirmpass = $_POST['confirm-password'];
+        $username = $con->real_escape_string($_POST['username']);
+        $email = $con->real_escape_string($_POST['email']);
+        $password = $con->real_escape_string($_POST['password']);
+        $confirmpass = $con->real_escape_string($_POST['confirm-password']);
 
         $valid_form = true;
         
@@ -22,16 +22,38 @@ session_start();
             $Error = "El nombre de usuario debe contener al menos 5 caracteres";
         }
 
-        if (strlen($password) < 7)
+        if ($valid_form && strlen($username) > 50)
         {
             $valid_form = false;
-            $Error = "La contraseña debe contener al menos 7 caracteres";
+            $Error = "El nombre de usuario es muy largo";
+        }
+
+        if ($valid_form && preg_match('/[!@#$%^&*(),.?":{}|<>]/', $username)) {
+            $valid_form = false;
+            $Error = "El nombre de usuario no puede contener caracteres especiales";
         }
 
         if ($valid_form && is_numeric($username))
         {
             $valid_form = false;
             $Error = "El nombre de usuario no puede ser numerico";
+        }
+
+        if ($valid_form && strlen($password) < 7)
+        {
+            $valid_form = false;
+            $Error = "La contraseña debe contener al menos 7 caracteres";
+        }
+
+        if ($valid_form && strlen($password) > 50)
+        {
+            $valid_form = false;
+            $Error = "La contraseña es muy larga";
+        }
+
+        if ($valid_form && !preg_match('/[!@#$%^&*(),.?":{}|<>]/', $password)) {
+            $valid_form = false;
+            $Error = "La contraseña debe contener al menos 1 caracter especial";
         }
 
         if($valid_form && !filter_var($email, FILTER_VALIDATE_EMAIL))
@@ -43,17 +65,17 @@ session_start();
         if($valid_form && $password !== $confirmpass)
         {
             $valid_form = false;
-            $Error = "La contraseña no concuerda, vuelva a escribirla";
+            $Error = "La contraseña no fue confirmada correctamente, vuelva a escribirla";
         }
 
         if($valid_form)
         {
             //checar si existe el usuario
-            $query = "select * from usuarios where Username = '$username' limit 1";
-            $result = mysqli_query($con, $query);
+            $query = "select * from usuarios where Username = ? limit 1";
+            $result = $con->execute_query($query, [$username]);
             if($result)
             {
-                if($result && mysqli_num_rows($result) > 0)
+                if($result && $result->num_rows > 0)
                 {
                     $valid_form = false;
                     $Error = "Usuario ya existe";
@@ -63,10 +85,14 @@ session_start();
 
         if ($valid_form)
         {   
+            //Utiliza un algoritmo hash para proteger la contraseña
+            //y sea dificil de desencriptar
+            $password = password_hash($password, PASSWORD_DEFAULT);
+
             //save to database
-            $query = "insert into usuarios (Email,Username,Password) values ('$email','$username','$password')";
+            $query = "insert into usuarios (Email,Username,Password) values (?,?,?)";
         
-            mysqli_query($con, $query);
+            $con->execute_query($query, [$email,$username,$password]);
             header("Location: login.php");
             die;
         }
