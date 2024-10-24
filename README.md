@@ -3,7 +3,7 @@ Web page where users can review games made by Red Fog Entertainment (fake compan
 
 Creditos
 - Log In/Sign Up: https://www.youtube.com/watch?v=WYufSGgaCZ8
-- Configurar XAMPP: https://www.youtube.com/watch?v=xXkKeojOb1A
-- Recibir información de la base de datos: https://www.youtube.com/watch?v=wHspfWWn1II
-- Guardar el ID en el link: https://www.youtube.com/watch?v=72U5Af8KUpA
-- Plantilla de reseñas: https://www.youtube.com/watch?v=rw3eZ6XodN8
+- Configure XAMPP: https://www.youtube.com/watch?v=xXkKeojOb1A
+- Obtain data from the database: https://www.youtube.com/watch?v=wHspfWWn1II
+- Save ID in el link: https://www.youtube.com/watch?v=72U5Af8KUpA
+- Review Template: https://www.youtube.com/watch?v=rw3eZ6XodN8
